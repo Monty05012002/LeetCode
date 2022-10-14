@@ -17,40 +17,56 @@ public :
 */
 
 class Solution{
-    stack<int> s,ss;
+    int minEle;
+    stack<int> s;
     public:
-       /*returns min element from stack*/
-       int getMin(){
-           
-           //Write your code here
-           if(s.empty())
-           return -1;
-           else
-           return ss.top();
+       int minele;
+       int getMin()
+       {
+           if(s.empty()==true)
+           {
+               return -1;
+           }
+           return minele;
        }
-       
-       /*returns poped element from stack*/
-       int pop(){
-           
-           //Write your code here
-           if(s.empty())
-           return -1;
-           int top=s.top();
-           s.pop();
-           if(top==ss.top())
-           ss.pop();
-           return top;
+       int pop()
+       {
+           if(s.empty()==true)
+           {
+               return -1;
+           }
+           else if(s.top()<minele)
+           {
+               int ele = minele;
+               minele = 2*minele-s.top();
+               s.pop();
+               return ele;
+           }
+           else if(s.top()>=minele)
+           {
+               int ele = s.top();
+               s.pop();
+               return ele;
+           }
        }
-       
-       /*push element x into the stack*/
-       void push(int x){
-           
-           //Write your code here
-           s.push(x);
-           if(ss.empty()||x<=ss.top())
-           ss.push(x);
-           
+       void push(int x)
+       {
+            if(s.empty()==true)    
+            {
+                s.push(x);
+                minele = x;
+            }
+            else if(minele<=x)
+            {
+                s.push(x);
+            }
+            else
+            {
+                s.push(2*x-minele);
+                minele = x;
+            }
        }
+           
 };
 
 //{ Driver Code Starts.

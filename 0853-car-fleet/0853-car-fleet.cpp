@@ -1,19 +1,19 @@
 class Solution {
 public:
     int carFleet(int target, vector<int>& position, vector<int>& speed) {
-        map<int,double>mp;
+       vector<pair<int,int>>v;
         for(int i=0;i<position.size();i++){
-            double dis=(double)(target-position[i])/speed[i];
-            mp[position[i]]=dis;
+            v.push_back({position[i],speed[i]});
         }
-        int fleet=0;
-        double minimum=0;
-        for(auto it=mp.rbegin();it!=mp.rend();it++){
-            if(it->second>minimum){
-                minimum=it->second;
-                fleet++;
-            }
+        sort(v.begin(),v.end());
+        stack<double>st;
+        for(int i=v.size()-1;i>=0;i--){
+             double t = (target-v[i].first)/((double)v[i].second);  
+            
+              if(st.empty() || st.top()<t)
+              {
+                  st.push(t);
+              }
         }
-        return fleet;
-    }
+        return st.size();}
 };

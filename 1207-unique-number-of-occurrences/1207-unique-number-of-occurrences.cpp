@@ -9,11 +9,15 @@ public:
         for(auto it:mp){
             ans.push_back(it.second);
         }
-        sort(ans.begin(),ans.end());
-        for(int i=0;i<ans.size()-1;i++){
-            if(ans[i]==ans[i+1])
-                return false;
+        unordered_set<int>s;
+        for(int i=0;i<ans.size();i++){
+            s.insert(ans[i]);
         }
-        return true;
+        int a=ans.size();
+        int b=s.size();
+        if(a==b)
+            return true;
+        else
+            return false;
     }
 };

@@ -15,27 +15,20 @@ class Solution{
             ans.push_back(s);
             return;
         }
-        if(i+1<n && !vis[i+1][j] && m[i+1][j]==1){
-              vis[i][j]=1;
-            solve(i+1,j,m,n,ans,vis,s+'D');
-            vis[i][j]=0;
-        }
-        if(j-1>=0 && !vis[i][j-1] && m[i][j-1]==1){
-              vis[i][j]=1;
-            solve(i,j-1,m,n,ans,vis,s+'L');
-            vis[i][j]=0;
-        }
-        if(j+1<n && !vis[i][j+1] && m[i][j+1]==1){
-              vis[i][j]=1;
-            solve(i,j+1,m,n,ans,vis,s+'R');
-            vis[i][j]=0;
-        }
-        if(i-1>=0 && !vis[i-1][j] && m[i-1][j]==1){
+       int di[]={1,0,0,-1};
+       int dj[]={0,-1,1,0};
+       string str="DLRU";
+       for(int k=0;k<4;k++){
+           int nr=i+di[k];
+           int nc=j+dj[k];
+           if(nr>=0 && nc>=0 && nc<n && nr<n && !vis[nr][nc] && m[nr][nc]==1){
             vis[i][j]=1;
-            solve(i-1,j,m,n,ans,vis,s+'U');
+            solve(nr,nc,m,n,ans,vis,s+str[k]);
             vis[i][j]=0;
         }
+       }
         
+         
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
         // Your code goes here

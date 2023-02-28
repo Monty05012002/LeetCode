@@ -12,11 +12,16 @@ class Solution{
 public:
     vector<int> optimalArray(int n,vector<int> &a){
         // Code here
+        // Median nikal lena hai
+        // Phir add karte rahena hai
+        // last me return the vector
+        int min_operation=0;
+        int median;
         vector<int>ans;
-        ans.push_back(0);
-        for(int i=1;i<n;i++){
-            int b=ans[i-1]+abs(a[i]-a[i/2]);
-            ans.push_back(b);
+        for(int i=0;i<n;i++){
+            median=a[i]-a[i/2];
+            min_operation+=median;
+            ans.push_back(min_operation);
         }
         return ans;
     }

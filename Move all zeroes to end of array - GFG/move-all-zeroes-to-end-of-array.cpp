@@ -11,12 +11,11 @@ public:
 	    int i=0,j=0;
 	    while(i<n){
 	        if(arr[i]!=0){
-	            int temp=arr[i];
-	            arr[i]=arr[j];
-	            arr[j]=temp;
-	            j++;
+	            swap(arr[i++],arr[j++]);
 	        }
-	        i++;
+	        else{
+	            i++;
+	        }
 	    }
 	    
 	}

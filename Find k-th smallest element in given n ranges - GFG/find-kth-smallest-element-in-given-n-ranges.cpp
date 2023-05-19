@@ -9,20 +9,54 @@ using namespace std;
 
 class Solution{
     public:
-    vector<int>kthSmallestNum(vector<vector<int>>&range, vector<int>queries){
-        //Write your code here
-        set<int>ans;
-        for(auto it:range){
-            for(int i=it[0];i<=it[1];i++){
-                ans.insert(i);
+    vector<vector<int>> merge(vector<vector<int>>& intervals) 
+    {
+        vector<vector<int>> ans;
+        int n = intervals.size();
+        sort (intervals.begin(), intervals.end());
+
+        for (int i=0; i<n; i++)
+        {
+            auto curr = intervals[i];
+
+            int j=i+1, start = intervals[i][0], end = intervals[i][1];
+            while(j<n && intervals[j][0]<=end)
+            {
+                end = max(end,intervals[j][1]);
+                j++;
             }
+            i=j-1;
+            ans.push_back({start,end});
         }
-        vector<int>v(ans.begin(),ans.end());
-        vector<int>res;
-        for(int i=0;i<queries.size();i++){
-            int k=queries[i];
-            if(k>v.size())res.push_back(-1);
-            else  res.push_back(v[k-1]);
+        return ans;   
+    }
+    vector<int>kthSmallestNum(int n, vector<vector<int>>&range, int q, vector<int>queries){
+        //Write your code here
+       vector<int>res;
+        vector<vector<int>> ans;
+        ans = merge(range);
+        
+        for (int i=0; i<q; i++)
+        {
+            int j, curr=0, k=queries[i];
+            
+            for (j=0; j<ans.size(); j++)
+            {
+                curr += ans[j][1]-ans[j][0]+1;
+                if (curr >= k)
+                {
+                    break;
+                }
+            }
+            
+            if (curr>=k)
+            {
+                res.push_back(ans[j][1]-(curr-k));
+            }
+            else
+            {
+                res.push_back(-1);
+            }
         }
         return res;
     } 
@@ -51,7 +85,7 @@ int main()
 	        queries.push_back(x);
 	    }
 	    Solution ob;
-	    vector<int>ans = ob.kthSmallestNum(range, queries);
+	    vector<int>ans = ob.kthSmallestNum(n, range, q, queries);
 	    for(auto it : ans){
 	        cout << it << " ";
 	    }

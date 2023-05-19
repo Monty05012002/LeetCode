@@ -8,19 +8,16 @@ class Solution {
   public:
     bool isStraightHand(int N, int groupSize, vector<int> &hand) {
         // code here
-         map<int,int>mp;
-        for(auto it:hand) mp[it]++;
-        priority_queue<int,vector<int>,greater<int>>minh;
-        for(auto it:mp) minh.push(it.first);
-        while(!minh.empty()){
-            int top=minh.top();
+        map<int,int>mp;
+        for(auto it:hand){
+            mp[it]++;
+        }
+        while(!mp.empty()){
+            int top=mp.begin()->first;
             for(int i=top;i<top+groupSize;i++){
                 if(mp.find(i)==mp.end()) return false;
-                mp[i]--;
-                if(mp[i]==0){
-                    if(i!=minh.top()) return false;
-                    minh.pop();
-                }
+                if(mp[i]==1) mp.erase(i);
+                else mp[i]--;
             }
         }
         return true;

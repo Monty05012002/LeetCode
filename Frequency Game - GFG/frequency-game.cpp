@@ -12,17 +12,19 @@ class Solution{
 public:
     int LargButMinFreq(int arr[], int n) {
         // code here
-        map<int,int>mp;
+        unordered_map<int,int>mp;
         for(int i=0;i<n;i++){
             mp[arr[i]]++;
         }
         int maxi=INT_MAX;
         int mini=-1;
         for(auto it:mp){
-            if(it.second<=maxi){
+            if(it.second<maxi){
                 maxi=it.second;
                 mini=it.first;
             }
+            else if(it.second==maxi)
+            mini=max(mini,it.first);
         }
         return mini;
     }

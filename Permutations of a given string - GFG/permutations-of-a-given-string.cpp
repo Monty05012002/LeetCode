@@ -9,8 +9,8 @@ class Solution
 		vector<string>find_permutation(string S)
 		{
 		    // Code here there
-		    vector<string>ans;
 		    sort(S.begin(),S.end());
+		    vector<string>ans;
 		    ans.push_back(S);
 		    while(next_permutation(S.begin(),S.end())){
 		        ans.push_back(S);

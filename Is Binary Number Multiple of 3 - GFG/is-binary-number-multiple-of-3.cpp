@@ -10,14 +10,16 @@ public:
 		
 	int isDivisible(string s){
 	    //complete the function here
-	    int odd=0,even=0;
+	    int evenCounts1=0,oddCounts1=0;
 	    for(int i=0;i<s.size();i++){
 	        if(s[i]=='1'){
-	            if(i%2==1) odd++;
-	            else even++;
+	            if(i&1==1)
+	            oddCounts1++;
+	            else
+	            evenCounts1++;
 	        }
 	    }
-	    return abs(odd-even)%3==0?1:0;
+	    return abs(evenCounts1-oddCounts1)%3==0?1:0;
 	}
 
 };

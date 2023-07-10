@@ -11,30 +11,34 @@ class Solution
     int findK(int a[MAX][MAX],int n,int m,int k)
     {
  		// Your code goes here.
- 		int count=0;
- 		vector<int>ans;
- 		int left=0,top=0,bottom=n-1,right=m-1;
+ 		int left=0,top=0,bottom=n-1,right=m-1,count=0;
  		while(count<k && top<=bottom && left<=right){
  		  for(int i=left;i<=right;i++){
- 		        ans.push_back(a[top][i]);
+ 		      count++;
+ 		      if(count==k)
+ 		        return a[top][i];
  		    }
  		    top++;
  		    for(int i=top;i<=bottom;i++){
- 		        ans.push_back(a[i][right]);
+ 		        count++;
+ 		        if(count==k)
+ 		        return a[i][right];
  		    }
  		    right--;
  		    for(int i=right;i>=left;i--){
- 		        ans.push_back(a[bottom][i]);
+ 		        count++;
+ 		        if(count==k)
+ 		        return a[bottom][i];
  		    }
  		    bottom--;
  		    for(int i=bottom;i>=top;i--){
- 		        ans.push_back(a[i][left]);
+ 		        count++;
+ 		        if(count==k)
+ 		        return a[i][left];
  		    }
  		    left++;
  		}
- 		if(k>m*n)
  		return -1;
- 		return ans[k-1];
     }
 };
 

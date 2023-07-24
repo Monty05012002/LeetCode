@@ -44,7 +44,7 @@ class Solution
     vector<int> rightView(Node *root)
     {
        // Your Code here
-       vector<int>ans;
+         vector<int>ans;
    if(root==NULL) return ans;
    queue<Node*>q;
    q.push(root);

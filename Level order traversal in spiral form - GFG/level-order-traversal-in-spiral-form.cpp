@@ -130,7 +130,7 @@ struct Node
 vector<int> findSpiral(Node *root)
 {
     //Your code here
-    vector<int>ans;
+     vector<int>ans;
     if(root==NULL)return ans;
     queue<Node*>q;
     q.push(root);
@@ -154,5 +154,4 @@ vector<int> findSpiral(Node *root)
         level++;
     }
     return ans;
-    
 }

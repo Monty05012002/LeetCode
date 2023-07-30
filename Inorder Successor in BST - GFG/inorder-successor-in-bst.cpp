@@ -113,7 +113,7 @@ class Solution{
     Node * inOrderSuccessor(Node *root, Node *x)
     {
         //Your code here
-        Node*successor=NULL;
+         Node*successor=NULL;
         while(root){
             if(x->data>=root->data){
                 root=root->right;

@@ -11,32 +11,31 @@ class Solution {
   public:
     int shortestDistance(int N, int M, vector<vector<int>> A, int X, int Y) {
         // code here
-        vector<vector<int>>t(N,vector<int>(M,0));
+        if(X==0 && Y==0) return 0;
         queue<pair<int,int>>q;
-        if(A[0][0]==0) return -1;
+        vector<vector<int>>vis(N,vector<int>(M,0));
         q.push({0,0});
-        t[0][0]=1;
-        int dr[]={-1,0,1,0};
-        int dc[]={0,1,0,-1};
-        int ans=0;
+        vis[0][0]=1;
+        int steps=0;
+        int dx[]={0,0,1,-1};
+        int dy[]={1,-1,0,0};
         while(!q.empty()){
             int size=q.size();
-            ans++;
             while(size--){
-              auto it=q.front();
-              q.pop();
-              int row=it.first;
-              int col=it.second;
-              if(row==X && col==Y) return ans-1;
-              for(int i=0;i<4;i++){
-                  int nr=row+dr[i];
-                  int nc=col+dc[i];
-                  if(nr>=0 && nr<N && nc>=0 && nc<M && A[nr][nc]==1 && t[nr][nc]==0){
-                      q.push({nr,nc});
-                      t[nr][nc]=1;
-                  }
-              }
+                int row=q.front().first;
+                int col=q.front().second;
+                q.pop();
+                if(row==X && col==Y) return steps;
+                for(int i=0;i<4;i++){
+                    int newr=row+dx[i];
+                    int newc=col+dy[i];
+                    if(newr>=0 && newr<N && newc>=0 && newc<M && !vis[newr][newc] && A[newr][newc]==1){
+                        vis[newr][newc]=1;
+                        q.push({newr,newc});
+                    }
+                }
             }
+            steps++;
         }
         return -1;
     }

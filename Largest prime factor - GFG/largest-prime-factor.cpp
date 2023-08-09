@@ -5,25 +5,15 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public: 
-    bool check(long long n){
-        if(n==1 ) return false;
-        for(int i=2;i*i<=n;i++){
-            if(n%i==0)
-            return 0;
-        }
-        return 1;
-    }
     long long int largestPrimeFactor(int N){
         // code here
-        vector<int>ans;
-        for(int i=2;i<=N;i++){
-            if(check(i)){
-                if(N%i==0){
-                    ans.push_back(i);
-                }
-            }
+        int i=2;
+        while(N>1){
+            if(N%i==0){
+                N/=i;
+            }else i++;
         }
-        return ans[ans.size()-1];
+        return i;
     }
 };
 

@@ -8,7 +8,7 @@ class Solution {
     long long int count(int coins[], int N, int sum) {
 
         // code here.
-        long long int t[N+1][sum+1];
+          long long int t[N+1][sum+1];
         for(int i=0;i<=N;i++){
             for(int j=0;j<=sum;j++){
                 if(i==0)

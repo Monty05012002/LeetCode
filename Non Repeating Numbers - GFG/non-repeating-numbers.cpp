@@ -9,19 +9,28 @@ public:
     vector<int> singleNumber(vector<int> nums) 
     {
         // Code here.
-        unordered_map<int,int>mp;
+        int x=0;
         for(auto it:nums){
-            mp[it]++;
+            x^=it;
         }
-        vector<int>ans(2);
-        int i=0;
-        for(auto it:mp){
-            if(it.second==1){
-                ans[i++]=it.first;
+        int mask=1;
+        while(1){
+            if((mask&x)==0){
+                mask=mask<<1;
+            }else break;
+        }
+        int a=0,b=0;
+        for(auto it:nums){
+            if(it&mask){
+                a^=it;
+            }else{
+                b^=it;
             }
         }
-        if(ans[0]>ans[1]) swap(ans[0],ans[1]);
-        return ans;
+        if(a<b)
+        return {a,b};
+        return {b,a};
+        
     }
 };
 

@@ -46,34 +46,36 @@ struct Node
 class Solution
 {
     public:
+    Node* reverse(Node*head){
+        Node*a=head;
+        Node*b=NULL;
+        Node*c=NULL;
+        while(a){
+            c=a->next;
+            a->next=b;
+            b=a;
+            a=c;
+        }
+        return b;
+    }
     Node *compute(Node *head)
     {
         // your code goes here
-        vector<int>ans;
-        Node*temp=head;
-        while(temp){
-            ans.push_back(temp->data);
-            temp=temp->next;
-        }
-        vector<int>val;
-        val.push_back(ans[ans.size()-1]);
-        int maxi=ans[ans.size()-1];
-        for(int i=ans.size()-2;i>=0;i--){
-            if(ans[i]>=maxi){
-                val.push_back(ans[i]);
-                maxi=ans[i];
-            }
-        }
-        reverse(val.begin(),val.end());
-        Node*dummy=new Node(-1);
-        temp=dummy;
-        for(int i=0;i<val.size();i++){
-            Node* newNode=new Node(val[i]);
-            temp->next=newNode;
-            temp=temp->next;
-        }
-        return dummy->next;
-        
+       Node*temp=reverse(head);
+       Node*temp1=temp;
+       int maxi=temp->data;
+       while(temp->next){
+           if(temp->next!=NULL){
+           if(temp->next->data>=maxi){
+               maxi=temp->next->data;
+               temp=temp->next;
+           }else{
+               temp->next=temp->next->next;
+           }
+           }
+       }
+      Node*a= reverse(temp1);
+    return a;
     }
     
 };

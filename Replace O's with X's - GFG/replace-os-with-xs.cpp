@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution{
 public:
-    void dfs(int row,int col, vector<vector<int>>&vis,vector<vector<char>> &mat,int delrow[],int delcol[]){
+ void dfs(int row,int col, vector<vector<int>>&vis,vector<vector<char>> &mat,int delrow[],int delcol[]){
         vis[row][col]=1;
         int n=mat.size();
         int m=mat[0].size();
@@ -49,7 +49,6 @@ public:
             }
         }
         return mat;
-        
     }
 };
 

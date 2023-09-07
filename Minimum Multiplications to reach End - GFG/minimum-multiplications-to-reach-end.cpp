@@ -8,10 +8,13 @@ using namespace std;
 // } Driver Code Ends
 // User function Template for C++
 
+// User function Template for C++
+
 class Solution {
   public:
     int minimumMultiplications(vector<int>& arr, int start, int end) {
         // code here
+        if(start==end) return 0;
         queue<pair<int,int>>q;
         vector<int>dist(100000,1e9);
         q.push({start,0});

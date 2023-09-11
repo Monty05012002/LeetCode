@@ -16,7 +16,7 @@ class Solution{
 public:
     bool isLucky(int n) {
         // code here
-        int i=2;
+         int i=2;
         while(true){
             if(i>n) return true;
             if(n%i==0) return false;

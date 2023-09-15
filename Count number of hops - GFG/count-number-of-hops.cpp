@@ -8,23 +8,19 @@ class Solution
 {
     public:
     //Function to count the number of ways in which frog can reach the top.
+    long long mod=1e9+7;
+    long long solve(long long n,vector<long long>&t){
+        if(n<0) return 0;
+        if(n==0) return 1;
+        if(t[n]!=-1) return t[n];
+        return t[n]=(solve(n-1,t)+solve(n-2,t)+solve(n-3,t))%mod;
+    }
     long long countWays(int n)
     {
         
         // your code here
-        if(n==1 || n==2)
-        return n;
-        if(n==3) return n+1;
-        long long a=1,b=2,c=4,d;
-        long long mod=1000000007;
-        for(int i=4;i<=n;i++){
-            d=(a+b+c)%mod;
-            a=b;
-            b=c;
-            c=d;
-        }
-        return d%mod;
-        
+        vector<long long>t(n+1,-1);
+        return solve(n,t);
         
         
     }

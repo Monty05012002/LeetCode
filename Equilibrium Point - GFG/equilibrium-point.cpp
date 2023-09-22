@@ -12,20 +12,17 @@ class Solution{
     int equilibriumPoint(long long a[], int n) {
     
         // Your code here
-        if(n==1)
-        return 1;
-       long long ans[n];
-       long long sum=0;
-       for(int i=0;i<n;i++){
-           sum+=a[i];
-           ans[i]=sum;
-       }
-       for(int i=1;i<n;i++){
-           if(ans[i-1]==sum-ans[i]){
-               return i+1;
-           }
-       }
-       return -1;
+         long long total=0;
+        for(int i=0;i<n;i++){
+           total=total+a[i];
+        }
+        long long mid=0;
+        for(int i=0;i<n;i++){
+           if(mid==(total-(mid+a[i])))
+           return i+1;
+           mid=mid+a[i];
+        }
+        return -1;
     }
 
 };

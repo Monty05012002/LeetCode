@@ -12,39 +12,40 @@ class Solution {
   public:
     int numberOfEnclaves(vector<vector<int>> &grid) {
         // Code here
+        queue<pair<int,int>>q;
+        int dx[]={0,0,1,-1};
+        int dy[]={1,-1,0,0};
         int n=grid.size();
         int m=grid[0].size();
         vector<vector<int>>vis(n,vector<int>(m,0));
-        queue<pair<int,int>>q;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(i==0||j==0||i==n-1||j==m-1){
-                    if(grid[i][j]==1){
+                if(i==n-1 || i==0 || j==0 || j==m-1){
+                 if(grid[i][j]==1){   
                     q.push({i,j});
-                    vis[i][j]=1;}
+                    vis[i][j]=1;
+                }
                 }
             }
         }
-        int delrow[]={-1,0,1,0};
-        int delcol[]={0,1,0,-1};
         while(!q.empty()){
-            int row=q.front().first;
-            int col=q.front().second;
+            auto it=q.front();
             q.pop();
+            int row=it.first;
+            int col=it.second;
             for(int i=0;i<4;i++){
-                int nrow=row+delrow[i];
-                int ncol=col+delcol[i];
-                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && !vis[nrow][ncol] && grid[nrow][ncol]==1){
-                    vis[nrow][ncol]=1;
-                    q.push({nrow,ncol});
+                int newr=row+dx[i];
+                int newc=col+dy[i];
+                if(newr>=0 && newr<n && newc>=0 && newc<m && grid[newr][newc]==1 && !vis[newr][newc]){
+                    q.push({newr,newc});
+                    vis[newr][newc]=1;
                 }
             }
         }
         int count=0;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(vis[i][j]==0 && grid[i][j]==1)
-                count++;
+                if(vis[i][j]==0 && grid[i][j]==1)count++;
             }
         }
         return count;

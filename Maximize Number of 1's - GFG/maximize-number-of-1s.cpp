@@ -11,22 +11,19 @@ public:
     // n is size of array
     int findZeroes(int arr[], int n, int m) {
         // code here
-        int maxi=0;
+        int zeros=0;
         int i=0,j=0,ans=0;
         while(j<n){
-           if(arr[j]==0)
-           maxi++;
-           while(maxi>m){
-               if(arr[i]==0) {
-                   maxi--;
-               }
-               i++;
-           }
-            ans=max(ans,j-i+1);
-            j++;
+            if(arr[j]==0)zeros++;
+            while(i<n && zeros>m){
+                if(arr[i]==0)zeros--;
+                i++;
         }
-        return ans;
+        ans=max(ans,j-i+1);
+        j++;
     }  
+    return ans;
+    }
 };
 
 //{ Driver Code Starts.

@@ -95,6 +95,14 @@ struct Node
 };
 */
 
+/* A binary Tree node
+struct Node
+{
+    int data;
+    struct Node *left, *right;
+};
+*/
+
 class Solution
 {
 private:

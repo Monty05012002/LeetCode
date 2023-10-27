@@ -28,7 +28,6 @@ class Solution{
              }
          }
         return n-t[n][n];
-        
     } 
 };
 
